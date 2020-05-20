@@ -11,7 +11,12 @@ private:
 public:
 	CageContainer();
 	~CageContainer();
-	void addCage(char* _climate, unsigned _capacity, char* _size, Dinosaur& _dino, char* _period);
+	CageContainer(const CageContainer& other);
+	CageContainer& operator= (const CageContainer& other);
+	void del();
+	void copy(const CageContainer& other);
+	void addCage(Cage newcage);
 	bool removeDfromCage(char* _name);
+	bool checkCage(char* _size, char* _climate, char* period, Dinosaur _dino);
+	unsigned getSize();
 };
-

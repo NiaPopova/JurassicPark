@@ -16,13 +16,20 @@ private:
 public:
 	Cage();
 	~Cage();
-	//void addDino(Dinosaur& _dino);
+	Cage(const Cage& other);
+	Cage& operator= (const Cage& other);
+	Cage(char* _size, char* _climate, char* _period);
+	void del();
+	void copy(const Cage& other);
+	void addDino(Dinosaur _dino);
 	void setClimate(char* _climate);
 	char* getClimate();
-	//char* getDino();
 	bool removeDino(char* _name);
 	void setSize(char* _size);
+	char* getSize();
 	void setAmount(unsigned _amount);
 	void setPeriod(char* _period);
+	char* getPeriod();
+	unsigned getAmount();
+	unsigned getCapacity();
 };
-
