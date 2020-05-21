@@ -54,8 +54,9 @@ void CageContainer::addCage(Cage newcage)
 
 		delete[] cage;
 		cage = newcontainer;
-		cage[size++] = newcage;
 	}
+	cage[size++] = newcage;
+
 }
 
 bool CageContainer::removeDfromCage(char* _name)

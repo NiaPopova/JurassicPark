@@ -197,9 +197,13 @@ void read(char* command, CageContainer& container, FoodContainer& _container, Wo
 			std::cout << "The amount must be a positive number: ";
 			std::cin >> amount;
 		}
-
 		Food food(food);
-		_container.addFood(food, amount);
+		Food* foods = new Food[amount];
+		for (int i = 0; i < amount; ++i)
+		{
+			foods[i] = food;
+		}
+		_container.addFood(foods,amount);
 	}
 	else if (strcmp(command, "exit") == 0)
 	{

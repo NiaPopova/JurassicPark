@@ -17,6 +17,10 @@ FoodContainer::FoodContainer(const FoodContainer& other)
 	size = other.size;
 	capacity = other.capacity;
 	food = new Food[other.capacity];
+	for (unsigned i = 0; i < other.size; ++i)
+	{
+		food[i] = other.food[i];
+	}
 }
 
 FoodContainer& FoodContainer::operator=(const FoodContainer& other)
@@ -27,14 +31,19 @@ FoodContainer& FoodContainer::operator=(const FoodContainer& other)
 		size = other.size;
 		capacity = other.capacity;
 		food = new Food[other.capacity];
+		for (unsigned i = 0; i < other.size; ++i)
+		{
+			food[i] = other.food[i];
+		}
 	}
 	return *this;
 }
 
-void FoodContainer::addFood(Food newfood, unsigned _amount)
+void FoodContainer::addFood(Food* newfood, unsigned amount)
 {
-	if (size == capacity)
+	if ((size + amount) >= capacity)
 	{
+		capacity += amount;
 		capacity *= 2;
 		Food* newcontainer = new Food[capacity];
 
@@ -45,6 +54,9 @@ void FoodContainer::addFood(Food newfood, unsigned _amount)
 
 		delete[] food;
 		food = newcontainer;
-		food[size++] = newfood;
+	}
+	for (unsigned i = 0; i < amount; ++i)
+	{
+		food[size++] = newfood[i];
 	}
 }

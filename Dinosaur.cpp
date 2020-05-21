@@ -107,3 +107,33 @@ char* Dinosaur::getName()
 {
 	return name;
 }
+
+void Dinosaur::read(std::istream& file)
+{
+	int temp;
+	file.read((char*)&temp, sizeof(int));
+	file.read((char*)name, temp);
+
+	file.read((char*)&temp, sizeof(int));
+	file.read((char*)gender, temp);
+
+	//file.read((char*)&id, sizeof(int));
+}
+
+void Dinosaur::write(std::ostream& file)
+{
+	int temp = strlen(name);
+	file.write((const char*)&temp, sizeof(int));
+	file.write((const char*)name, strlen(name));
+
+	temp = strlen(gender);
+	file.write((const char*)&temp, sizeof(int));
+	file.write((const char*)gender, strlen(gender));
+
+
+
+	file.write((const char*)period, strlen(period));
+
+
+	//file.write((const char*)&id, sizeof(id);
+}

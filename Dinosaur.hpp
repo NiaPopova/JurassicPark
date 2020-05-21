@@ -1,5 +1,6 @@
 #pragma once
-#include<cstring>
+#include <cstring>
+#include <fstream>
 
 class Dinosaur
 {
@@ -21,4 +22,6 @@ public:
 	void copy(const Dinosaur& other);
 	char* getOrder();
 	char* getName();
+	void read(std::istream& file);
+	void write(std::ostream& file);
 };

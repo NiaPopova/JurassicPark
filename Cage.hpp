@@ -10,8 +10,8 @@ private:
 	unsigned amount;
 	unsigned capacity;
 	char* climate;
-	Dinosaur* animal;
 	char* period;
+	Dinosaur* animal;
 
 public:
 	Cage();

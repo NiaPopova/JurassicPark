@@ -13,5 +13,5 @@ public:
 	~FoodContainer();
 	FoodContainer(const FoodContainer& other);
 	FoodContainer& operator=(const FoodContainer& other);
-	void addFood(Food newfood, unsigned _amount);
+	void addFood(Food* newfood,unsigned amount);
 };
