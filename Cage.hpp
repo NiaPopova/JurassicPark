@@ -32,4 +32,6 @@ public:
 	char* getPeriod();
 	unsigned getAmount();
 	unsigned getCapacity();
+	void read(std::istream& file);
+	void write(std::ostream& file);
 };

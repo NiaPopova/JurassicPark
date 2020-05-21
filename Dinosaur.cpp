@@ -117,23 +117,42 @@ void Dinosaur::read(std::istream& file)
 	file.read((char*)&temp, sizeof(int));
 	file.read((char*)gender, temp);
 
-	//file.read((char*)&id, sizeof(int));
+	file.read((char*)&temp, sizeof(int));
+	file.read((char*)period, temp);
+
+	file.read((char*)&temp, sizeof(int));
+	file.read((char*)order, temp);
+
+	file.read((char*)&temp, sizeof(int));
+	file.read((char*)species, temp);
+
+	file.read((char*)&temp, sizeof(int));
+	file.read((char*)food, temp);
 }
 
 void Dinosaur::write(std::ostream& file)
 {
 	int temp = strlen(name);
 	file.write((const char*)&temp, sizeof(int));
-	file.write((const char*)name, strlen(name));
+	file.write((const char*)name, temp);
 
 	temp = strlen(gender);
 	file.write((const char*)&temp, sizeof(int));
-	file.write((const char*)gender, strlen(gender));
+	file.write((const char*)gender, temp);
 
+	temp = strlen(period);
+	file.write((const char*)&temp, sizeof(int));
+	file.write((const char*)period, temp);
 
+	temp = strlen(order);
+	file.write((const char*)&temp, sizeof(int));
+	file.write((const char*)order, temp);
 
-	file.write((const char*)period, strlen(period));
+	temp = strlen(species);
+	file.write((const char*)&temp, sizeof(int));
+	file.write((const char*)species, temp);
 
-
-	//file.write((const char*)&id, sizeof(id);
+	temp = strlen(food);
+	file.write((const char*)&temp, sizeof(int));
+	file.write((const char*)food, temp);
 }

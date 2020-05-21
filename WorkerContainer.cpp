@@ -33,3 +33,17 @@ void WorkerContainer::addWorker(CageContainer container)
 		size = container.getSize();
 	}
 }
+
+void WorkerContainer::read(std::istream& file)
+{
+	file.read((char*)&size, sizeof(size));
+
+	file.read((char*)&capacity, sizeof(capacity));
+}
+
+void WorkerContainer::write(std::ostream& file)
+{
+	file.write((const char*)&size, sizeof(size));
+
+	file.write((const char*)&capacity, sizeof(capacity));
+}

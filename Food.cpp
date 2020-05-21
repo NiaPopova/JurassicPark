@@ -34,3 +34,17 @@ Food& Food::operator=(const Food& other)
 	}
 	return *this;
 }
+
+void Food::read(std::istream& file)
+{
+	int temp;
+	file.read((char*)&temp, sizeof(int));
+	file.read((char*)type, temp);
+}
+
+void Food::write(std::ostream& file)
+{
+	int temp = strlen(type);
+	file.write((const char*)&temp, sizeof(int));
+	file.write((const char*)type, temp);
+}

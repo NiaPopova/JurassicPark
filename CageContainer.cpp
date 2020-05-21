@@ -2,7 +2,7 @@
 
 CageContainer::CageContainer()
 {
-	size = 1;
+	size = 0;
 	capacity = 20;
 	cage = new Cage[capacity];
 }
@@ -35,9 +35,13 @@ void CageContainer::del()
 
 void CageContainer::copy(const CageContainer& other)
 {
-	cage = new Cage[other.capacity];
 	size = other.size;
 	capacity = other.capacity;
+	cage = new Cage[other.capacity];
+	for (unsigned i = 0; i < other.size; ++i)
+	{
+		cage[i] = other.cage[i];
+	}
 }
 
 void CageContainer::addCage(Cage newcage)
@@ -56,7 +60,6 @@ void CageContainer::addCage(Cage newcage)
 		cage = newcontainer;
 	}
 	cage[size++] = newcage;
-
 }
 
 bool CageContainer::removeDfromCage(char* _name)
@@ -73,7 +76,7 @@ bool CageContainer::removeDfromCage(char* _name)
 
 bool CageContainer::checkCage(char* _size, char* _climate, char* period, Dinosaur _dino)
 {
-	for (unsigned i = 0; i < capacity; ++i)
+	for (unsigned i = 0; i < size; ++i)
 	{
 		if (strcmp(cage[i].getSize(), _size) == 0)
 		{
@@ -96,4 +99,36 @@ bool CageContainer::checkCage(char* _size, char* _climate, char* period, Dinosau
 unsigned CageContainer::getSize()
 {
 	return size;
+}
+
+void CageContainer::read(std::istream& file)
+{
+	file.read((char*)&size, sizeof(size));
+
+	file.read((char*)&capacity, sizeof(capacity));
+
+	for (unsigned i = 0; i < size; ++i)
+	{
+		cage[i].read(file);
+	}
+}
+
+void CageContainer::write(std::ostream& file)
+{
+	file.write((const char*)&size, sizeof(size));
+
+	file.write((const char*)&capacity, sizeof(capacity));
+
+	for (unsigned i = 0; i < size; ++i)
+	{
+		cage[i].write(file);
+	}
+}
+
+void CageContainer::print() const
+{
+	for (unsigned i = 0; i = size; i++)
+	{
+		std::cout<< cage[i].getClimate();
+	}
 }

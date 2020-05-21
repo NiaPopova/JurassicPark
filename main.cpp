@@ -199,22 +199,31 @@ void read(char* command, CageContainer& container, FoodContainer& _container, Wo
 		}
 		Food food(food);
 		Food* foods = new Food[amount];
-		for (int i = 0; i < amount; ++i)
+		for (unsigned i = 0; i < amount; ++i)
 		{
 			foods[i] = food;
 		}
-		_container.addFood(foods,amount);
+		_container.addFood(foods, amount);
 	}
 	else if (strcmp(command, "exit") == 0)
 	{
-		//TODO запазване на информацията във файл
-		std::ofstream file;
-		file.open("Zoo", std::ios::in | std::ios::binary);
-		std::cout << "The program is closed" << std::endl;
+		std::ofstream out;
+
+		out.open("cages.dat", std::ios::binary | std::ios::out);
+		container.write(out);
+		out.close();
+
+		//out.open("FoodContainer.dat", std::ios::binary | std::ios::out);
+		//_container.write(out);
+		//out.close();
+
+		//out.open("WorkerContainer.dat", std::ios::binary | std::ios::out);
+		//_container_.write(out);
+		//out.close();
 	}
 	else
 	{
-	std::cout << "You've entered wrong command!"<<std::endl;
+		std::cout << "You've entered wrong command!" << std::endl;
 	}
 }
 
@@ -225,6 +234,28 @@ int main()
 	FoodContainer _container;
 	WorkerContainer _container_;
 
+	std::ifstream in;
+
+	in.open("cages.dat", std::ios::binary | std::ios::in);
+	if (in)
+	{
+		in.seekg(0, std::ios::end);
+		if (in.tellg() != 0)
+		{
+			container.read(in);
+		}
+	}
+	in.close();
+
+	//in.open("foods.dat", std::ios::binary | std::ios::in);
+	//_container.read(in);
+	//in.close();
+
+	//in.open("workers.dat", std::ios::binary | std::ios::in);
+	//_container_.read(in);
+	//in.close();
+	container.print();
+
 	std::cout << "Welcome to Jurasic Park!" << std::endl;
 	std::cout << "The program can control the park with the following commands:" << std::endl;
 	std::cout << "<add_dino> - adding a new dinosaur" << std::endl;
@@ -232,6 +263,7 @@ int main()
 	std::cout << "<remove_dino> - removing an existing dinosaur from the park" << std::endl;
 	std::cout << "<load_food> - adding food" << std::endl;
 	std::cout << "<exit> - exit the program" << std::endl;
+	std::cout << "Warning! If you close the program without entering the command <exit>, the changes you've made will not be saved!" << std::endl;
 
 	do
 	{

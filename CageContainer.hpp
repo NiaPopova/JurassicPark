@@ -4,9 +4,9 @@
 class CageContainer
 {
 private:
-	Cage* cage;
 	unsigned size;
 	unsigned capacity;
+	Cage* cage;
 
 public:
 	CageContainer();
@@ -19,4 +19,7 @@ public:
 	bool removeDfromCage(char* _name);
 	bool checkCage(char* _size, char* _climate, char* period, Dinosaur _dino);
 	unsigned getSize();
+	void read(std::istream& file);
+	void write(std::ostream& file);
+	void print() const;
 };
