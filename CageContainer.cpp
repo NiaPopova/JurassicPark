@@ -2,7 +2,7 @@
 
 CageContainer::CageContainer()
 {
-	size = 0;
+	size = 1;
 	capacity = 20;
 	cage = new Cage[capacity];
 }
@@ -111,6 +111,7 @@ void CageContainer::read(std::istream& file)
 	{
 		cage[i].read(file);
 	}
+
 }
 
 void CageContainer::write(std::ostream& file)
@@ -124,11 +125,12 @@ void CageContainer::write(std::ostream& file)
 		cage[i].write(file);
 	}
 }
-
-void CageContainer::print() const
-{
-	for (unsigned i = 0; i = size; i++)
-	{
-		std::cout<< cage[i].getClimate();
-	}
-}
+//
+//void CageContainer::print() const
+//{
+//	for (unsigned i = 0; i < size; ++i)
+//	{
+//		std::cout << cage[i].getClimate();
+//		std::cout << cage[i].getCapacity();
+//	}
+//}

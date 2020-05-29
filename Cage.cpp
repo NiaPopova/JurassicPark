@@ -14,7 +14,7 @@ Cage::Cage()
 	period = new char[5];
 	strcpy(period, "jura");
 
-	animal = new Dinosaur[amount];
+	animal = new Dinosaur[capacity];
 }
 
 Cage::~Cage()
@@ -127,7 +127,7 @@ bool Cage::removeDino(char* _name)
 	{
 		if (strcmp(animal[i].getName(), _name) == 0)
 		{
-			std::swap(animal[0], animal[i]);
+			std::swap(animal[i], animal[amount - 1]);
 			amount--;
 			return true;
 		}
@@ -187,7 +187,7 @@ void Cage::read(std::istream& file)
 
 	file.read((char*)&temp, sizeof(int));
 	file.read((char*)period, temp);
-
+	
 	for (unsigned i = 0; i < amount; ++i)
 	{
 		animal[i].read(file);

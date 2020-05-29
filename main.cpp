@@ -210,7 +210,11 @@ void read(char* command, CageContainer& container, FoodContainer& _container, Wo
 		std::ofstream out;
 
 		out.open("cages.dat", std::ios::binary | std::ios::out);
-		container.write(out);
+		
+		if (out.is_open())
+		{
+			container.write(out);
+		}
 		out.close();
 
 		//out.open("FoodContainer.dat", std::ios::binary | std::ios::out);
@@ -237,7 +241,7 @@ int main()
 	std::ifstream in;
 
 	in.open("cages.dat", std::ios::binary | std::ios::in);
-	if (in)
+	if (in.is_open()==true)
 	{
 		in.seekg(0, std::ios::end);
 		if (in.tellg() != 0)
@@ -245,16 +249,43 @@ int main()
 			container.read(in);
 		}
 	}
+	else
+	{
+		std::cout << "couldnt open";
+	}
 	in.close();
 
-	//in.open("foods.dat", std::ios::binary | std::ios::in);
-	//_container.read(in);
-	//in.close();
+	in.open("food.dat", std::ios::binary | std::ios::in);
+	if (in.is_open() == true)
+	{
+		in.seekg(0, std::ios::end);
+		if (in.tellg() != 0)
+		{
+			_container.read(in);
+		}
+	}
+	else
+	{
+		std::cout << "couldnt open";
+	}
+	in.close();
 
-	//in.open("workers.dat", std::ios::binary | std::ios::in);
-	//_container_.read(in);
-	//in.close();
-	container.print();
+	in.open("workers.dat", std::ios::binary | std::ios::in);
+	if (in.is_open() == true)
+	{
+		in.seekg(0, std::ios::end);
+		if (in.tellg() != 0)
+		{
+			_container_.read(in);
+		}
+	}
+	else
+	{
+		std::cout << "couldnt open";
+	}
+	in.close();
+
+	//container.print();
 
 	std::cout << "Welcome to Jurasic Park!" << std::endl;
 	std::cout << "The program can control the park with the following commands:" << std::endl;
