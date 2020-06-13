@@ -125,12 +125,3 @@ void CageContainer::write(std::ostream& file)
 		cage[i].write(file);
 	}
 }
-//
-//void CageContainer::print() const
-//{
-//	for (unsigned i = 0; i < size; ++i)
-//	{
-//		std::cout << cage[i].getClimate();
-//		std::cout << cage[i].getCapacity();
-//	}
-//}

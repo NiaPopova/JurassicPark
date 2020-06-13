@@ -21,5 +21,4 @@ public:
 	unsigned getSize();
 	void read(std::istream& file);
 	void write(std::ostream& file);
-	//void print();
 };
